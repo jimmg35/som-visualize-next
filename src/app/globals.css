@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply w-screen flex overflow-hidden;
+}
+
+main {
+  @apply w-screen h-screen bg-base-100 p-4  overflow-auto;
+}
+
+.report {
+  width: calc();
+}
