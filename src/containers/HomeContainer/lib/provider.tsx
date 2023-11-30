@@ -35,13 +35,13 @@ export const SomContext = createContext<ISomContext>({
 })
 
 const SomProvider = ({ children }: { children: React.ReactNode }) => {
-  const [expId, setexpId] = useState<string>('1701355150')
+  const [expId, setexpId] = useState<string>('')
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [log, setlog] = useState<string | undefined>(undefined)
   const [originalColumns, setoriginalColumns] = useState<string[]>([])
   const [normalizedColumns, setnormalizedColumns] = useState<string[]>([])
-  const [columnX, setcolumnX] = useState<string>('1701325872')
-  const [columnY, setcolumnY] = useState<string>('1701325872')
+  const [columnX, setcolumnX] = useState<string>('')
+  const [columnY, setcolumnY] = useState<string>('')
 
   return (
     <SomContext.Provider
