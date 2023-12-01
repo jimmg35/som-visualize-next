@@ -13,6 +13,12 @@ export const getColumnMeta = async ({ expId }: { expId: string }) => {
   const content = (await response.json()) as unknown as {
     original: string[]
     normalized: string[]
+    epoch: number
+    batchSize: number
+    outputDimension: number[]
+    datasetSize: number[]
+    totalCluster: number
+    clusterRatio: { [key: string]: number }
   }
   return content
 }

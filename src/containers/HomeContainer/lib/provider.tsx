@@ -8,6 +8,15 @@ interface ISomContext {
   normalizedColumns: string[]
   columnX: string
   columnY: string
+
+  epoch: number
+  batchSize: number
+  outputDimension: number[]
+  datasetSize: number[]
+  totalCluster: number
+  clusterRatio: { [key: string]: number }
+
+  onMetaChange: (value: any) => void
   onColumnXChange: (value: string) => void
   onColumnYChange: (value: string) => void
   onExpIdChange: (value: string) => void
@@ -25,6 +34,15 @@ export const SomContext = createContext<ISomContext>({
   normalizedColumns: [],
   columnX: '',
   columnY: '',
+
+  epoch: 0,
+  batchSize: 0,
+  outputDimension: [],
+  datasetSize: [],
+  totalCluster: 0,
+  clusterRatio: {},
+
+  onMetaChange: () => {},
   onColumnXChange: () => {},
   onColumnYChange: () => {},
   onExpIdChange: () => {},
@@ -35,13 +53,21 @@ export const SomContext = createContext<ISomContext>({
 })
 
 const SomProvider = ({ children }: { children: React.ReactNode }) => {
-  const [expId, setexpId] = useState<string>('')
+  const [expId, setexpId] = useState<string>('1701415386')
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [log, setlog] = useState<string | undefined>(undefined)
   const [originalColumns, setoriginalColumns] = useState<string[]>([])
   const [normalizedColumns, setnormalizedColumns] = useState<string[]>([])
   const [columnX, setcolumnX] = useState<string>('')
   const [columnY, setcolumnY] = useState<string>('')
+  const [epoch, setepoch] = useState<number>(0)
+  const [batchSize, setbatchSize] = useState<number>(0)
+  const [outputDimension, setoutputDimension] = useState<number[]>([])
+  const [datasetSize, setdatasetSize] = useState<number[]>([])
+  const [totalCluster, settotalCluster] = useState<number>(0)
+  const [clusterRatio, setclusterRatio] = useState<{ [key: string]: number }>(
+    {}
+  )
 
   return (
     <SomContext.Provider
@@ -53,6 +79,21 @@ const SomProvider = ({ children }: { children: React.ReactNode }) => {
         normalizedColumns,
         columnX,
         columnY,
+        epoch,
+        batchSize,
+        outputDimension,
+        datasetSize,
+        totalCluster,
+        clusterRatio,
+        onMetaChange: (value) => {
+          console.log(value)
+          setepoch(value.epoch)
+          setbatchSize(value.batchSize)
+          setoutputDimension(value.outputDimension)
+          setdatasetSize(value.datasetSize)
+          settotalCluster(value.totalCluster)
+          setclusterRatio(value.clusterRatio)
+        },
         onColumnXChange: (value) => {
           setcolumnX(value)
         },
