@@ -11,6 +11,7 @@ const HomeContainer = () => {
     expId,
     log,
     isLoading,
+    onMetaChange,
     onNormalizedColumnsChange,
     onExpIdChange,
     onIsLoadingChange,
@@ -26,6 +27,7 @@ const HomeContainer = () => {
     onLogChange(logContent)
 
     const metaContent = await getColumnMeta({ expId })
+    onMetaChange(metaContent)
     // onOriginalColumnsChange(metaContent.original)
 
     onNormalizedColumnsChange([
@@ -56,7 +58,7 @@ const HomeContainer = () => {
           ) : (
             <span className="loading loading-bars loading-sm"></span>
           )}
-          下載實驗數據
+          獲取實驗數據
         </button>
       </div>
 
