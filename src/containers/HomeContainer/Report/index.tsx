@@ -34,7 +34,7 @@ const Report = () => {
   return (
     <>
       <div className="divider"></div>
-      <div className="w-full h-full bg-base-300 rounded-xl overflow-auto">
+      <div className="w-full h-full bg-base-300 rounded-xl overflow-auto shadow">
         <div className="p-4 flex flex-col gap-6">
           <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
             <div className="stat  place-items-center">
@@ -75,44 +75,48 @@ const Report = () => {
 
         <div className="divider px-4"></div>
 
-        <div className="p-4 flex items-center justify-center gap-4">
-          <select
-            className="select select-bordered w-full max-w-xs"
-            onChange={(e) => {
-              onColumnXChange(e.target.value)
-            }}
-            defaultValue={undefined}
-            value={columnX}
-          >
-            {normalizedColumns.map((column, index) => (
-              <option key={index} value={column}>
-                {column}
-              </option>
-            ))}
-          </select>
+        <div className="p-4">
+          <div className="p-4 py-8 bg-base-100 shadow rounded-2xl">
+            <div className="flex items-center justify-center gap-4">
+              <select
+                className="select select-bordered w-full max-w-xs"
+                onChange={(e) => {
+                  onColumnXChange(e.target.value)
+                }}
+                defaultValue={undefined}
+                value={columnX}
+              >
+                {normalizedColumns.map((column, index) => (
+                  <option key={index} value={column}>
+                    {column}
+                  </option>
+                ))}
+              </select>
 
-          <select
-            className="select select-bordered w-full max-w-xs"
-            onChange={(e) => {
-              onColumnYChange(e.target.value)
-            }}
-            defaultValue={undefined}
-            value={columnY}
-          >
-            {normalizedColumns.map((column, index) => (
-              <option key={index} value={column}>
-                {column}
-              </option>
-            ))}
-          </select>
+              <select
+                className="select select-bordered w-full max-w-xs"
+                onChange={(e) => {
+                  onColumnYChange(e.target.value)
+                }}
+                defaultValue={undefined}
+                value={columnY}
+              >
+                {normalizedColumns.map((column, index) => (
+                  <option key={index} value={column}>
+                    {column}
+                  </option>
+                ))}
+              </select>
 
-          <button className="btn btn-neutral" onClick={handleColumnChange}>
-            產圖
-          </button>
-        </div>
+              <button className="btn btn-neutral" onClick={handleColumnChange}>
+                產圖
+              </button>
+            </div>
 
-        <div className="flex flex-wrap py-8 px-4 items-center justify-center gap-4">
-          {data && <Chart data={data} />}
+            <div className="flex flex-wrapitems-center justify-center gap-4 ">
+              {data && <Chart data={data} />}
+            </div>
+          </div>
         </div>
       </div>
     </>
